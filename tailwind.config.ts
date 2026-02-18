@@ -13,7 +13,13 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'],
+      },
       colors: {
+        'flowzi-blue': '#1A6FFF',
+        'flowzi-purple': '#7B2FFF',
+        'flowzi-magenta': '#C026D3',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

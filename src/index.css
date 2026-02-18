@@ -1,96 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 220 100% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 270 100% 60%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 220 100% 55%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Flowzi custom tokens */
+    --flowzi-blue: 220 100% 55%;
+    --flowzi-purple: 270 100% 60%;
+    --flowzi-magenta: 293 96% 50%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --glow-blue: 0 0 20px rgba(26, 111, 255, 0.6), 0 0 40px rgba(26, 111, 255, 0.3);
+    --glow-purple: 0 0 20px rgba(123, 47, 255, 0.6), 0 0 40px rgba(123, 47, 255, 0.3);
+    --glow-metric: 0 0 30px rgba(26, 111, 255, 0.8), 0 0 60px rgba(123, 47, 255, 0.5), 0 0 90px rgba(192, 38, 211, 0.3);
   }
 }
 
@@ -99,7 +52,107 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  html, body, #root {
+    height: 100%;
+    overflow: hidden;
+    background: #000000;
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, #1A6FFF 0%, #7B2FFF 50%, #C026D3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-muted {
+    background: linear-gradient(135deg, rgba(26,111,255,0.6) 0%, rgba(123,47,255,0.6) 50%, rgba(192,38,211,0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-blue {
+    text-shadow: 0 0 20px rgba(26, 111, 255, 0.8), 0 0 40px rgba(26, 111, 255, 0.4);
+  }
+
+  .glow-metric {
+    text-shadow: 0 0 30px rgba(26, 111, 255, 0.9), 0 0 60px rgba(123, 47, 255, 0.6), 0 0 90px rgba(192, 38, 211, 0.4);
+    filter: drop-shadow(0 0 15px rgba(26, 111, 255, 0.7));
+  }
+
+  .glow-border {
+    box-shadow: 0 0 0 1px rgba(26, 111, 255, 0.3), 0 0 20px rgba(26, 111, 255, 0.15), inset 0 0 20px rgba(26, 111, 255, 0.05);
+  }
+
+  .glow-border-left {
+    border-left: 2px solid #1A6FFF;
+    box-shadow: -4px 0 20px rgba(26, 111, 255, 0.4);
+  }
+
+  .glow-line {
+    background: linear-gradient(90deg, transparent, #1A6FFF, #7B2FFF, transparent);
+    box-shadow: 0 0 10px rgba(26, 111, 255, 0.6);
+  }
+
+  .glow-line-vertical {
+    background: linear-gradient(180deg, transparent, #1A6FFF, #7B2FFF, transparent);
+    box-shadow: 0 0 10px rgba(26, 111, 255, 0.6);
+  }
+
+  .gradient-icon {
+    background: linear-gradient(135deg, #1A6FFF 0%, #7B2FFF 50%, #C026D3 100%);
+  }
+
+  .slide-bg {
+    background: #000000;
+  }
+
+  .placeholder-box {
+    border: 1px dashed rgba(26, 111, 255, 0.4);
+    background: rgba(26, 111, 255, 0.03);
+    border-radius: 8px;
+  }
+
+  .timeline-node {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1A6FFF, #7B2FFF);
+    box-shadow: 0 0 10px rgba(26, 111, 255, 0.8), 0 0 20px rgba(26, 111, 255, 0.4);
+    flex-shrink: 0;
+  }
+
+  .timeline-node-final {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1A6FFF, #7B2FFF, #C026D3);
+    box-shadow: 0 0 20px rgba(26, 111, 255, 1), 0 0 40px rgba(123, 47, 255, 0.6), 0 0 60px rgba(192, 38, 211, 0.3);
+    flex-shrink: 0;
+  }
+
+  .timeline-line {
+    height: 1px;
+    background: linear-gradient(90deg, #1A6FFF, #7B2FFF);
+    flex: 1;
+    box-shadow: 0 0 8px rgba(26, 111, 255, 0.5);
+  }
+
+  .card-solution {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(26, 111, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(26, 111, 255, 0.08), inset 0 0 30px rgba(26, 111, 255, 0.02);
+    transition: all 0.3s ease;
+  }
+
+  .card-solution:hover {
+    border-color: rgba(26, 111, 255, 0.4);
+    box-shadow: 0 0 40px rgba(26, 111, 255, 0.15);
   }
 }
