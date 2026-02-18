@@ -65,7 +65,7 @@ export const Slide05 = () => (
           <div className="absolute inset-0 rounded-full opacity-30 blur-xl"
             style={{ background: 'radial-gradient(circle, #7B2FFF 0%, transparent 70%)', transform: 'scale(2.5)' }} />
           <div className="relative bg-white/5 rounded-xl p-5 glow-border">
-            <img src={flowziLogo} alt="Flowzi" className="h-8 object-contain" style={{ filter: 'invert(1)' }} />
+            <img src={flowziLogo} alt="Flowzi" className="h-8 object-contain" />
           </div>
         </div>
         <div className="flex items-center gap-3 opacity-40">

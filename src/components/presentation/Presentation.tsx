@@ -5,6 +5,7 @@ import { Slide02 } from './slides/Slide02';
 import { Slide03 } from './slides/Slide03';
 import { Slide03B } from './slides/Slide03B';
 import { Slide04 } from './slides/Slide04';
+import { Slide04B } from './slides/Slide04B';
 import { Slide05 } from './slides/Slide05';
 import { Slide06 } from './slides/Slide06';
 import { Slide07 } from './slides/Slide07';
@@ -18,7 +19,7 @@ import { Slide14 } from './slides/Slide14';
 import { Slide15 } from './slides/Slide15';
 
 const slides = [
-  Slide01, Slide02, Slide03, Slide03B, Slide04, Slide05,
+  Slide01, Slide02, Slide03, Slide03B, Slide04, Slide04B, Slide05,
   Slide06, Slide07, Slide08, Slide09, Slide10,
   Slide11, Slide12, Slide13, Slide14, Slide15,
 ];

@@ -1,3 +1,4 @@
+import flowziLogo from '@/assets/flowzi-logo.png';
 import { SpeakerTag } from '../SpeakerTag';
 
 export const Slide01 = () => (
@@ -58,19 +59,12 @@ export const Slide01 = () => (
     {/* Content container - centered */}
     <div className="relative z-10 flex flex-col items-center justify-center h-full px-12">
 
-      {/* Logo with real colors in frosted glass pill */}
-      <div
-        className="mb-10 px-6 py-3 rounded-full"
-        style={{
-          background: 'rgba(255,255,255,0.92)',
-          backdropFilter: 'blur(20px)',
-          boxShadow: '0 4px 30px rgba(26,111,255,0.15), 0 0 60px rgba(26,111,255,0.08)',
-        }}
-      >
+      {/* Logo */}
+      <div className="mb-10">
         <img
-          src="/logo-lettering-preto.png"
+          src={flowziLogo}
           alt="Flowzi"
-          className="h-8 object-contain"
+          className="h-20 object-contain"
         />
       </div>
 
@@ -107,7 +101,7 @@ export const Slide01 = () => (
         className="text-white/60 text-center font-light max-w-lg"
         style={{ fontSize: 'clamp(15px, 1.8vw, 20px)', lineHeight: 1.6 }}
       >
-        Como vendemos solucoes de IA que ninguem estava a vender em Portugal
+        O que aprendemos a construir, vender e escalar com IA
       </p>
 
       {/* Speaker names */}
