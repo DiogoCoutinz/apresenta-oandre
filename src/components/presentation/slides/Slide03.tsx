@@ -31,10 +31,10 @@ export const Slide03 = ({ step = 0 }: { step?: number }) => (
       <div
         className={T}
         style={{
-          transform: step === 0 ? 'scale(1)' : 'scale(0.75)',
+          transform: step === 0 ? 'scale(1)' : 'scale(0.65)',
           transformOrigin: 'top left',
           opacity: step === 5 ? 0 : 1,
-          marginBottom: step === 0 ? '0' : '-20px',
+          marginBottom: step === 0 ? '0' : '-32px',
         }}
       >
         <p className="text-white/40 text-xs font-bold tracking-[0.3em] uppercase mb-3 pt-4">Diogo — A História</p>
@@ -273,20 +273,28 @@ export const Slide03 = ({ step = 0 }: { step?: number }) => (
             </p>
           </div>
         </div>
-        <div className="w-[38%] flex-shrink-0 self-stretch flex flex-col gap-2 py-4">
-          {/* Website screenshot — grande */}
+        <div className="w-[38%] flex-shrink-0 flex flex-col gap-3 justify-center">
+          {/* Website screenshot */}
           <div
-            className="flex-[3] min-h-0 rounded-xl overflow-hidden"
+            className="rounded-xl overflow-hidden"
             style={{ border: '1px solid rgba(192,38,211,0.25)', boxShadow: '0 4px 30px rgba(0,0,0,0.4), 0 0 20px rgba(192,38,211,0.08)' }}
           >
-            <img src="/fotohistoria/pictuzlanding.png" alt="PicTuz — website" className="w-full h-full object-cover object-top" />
+            <img src="/fotohistoria/pictuzlanding.png" alt="PicTuz — website" className="w-full h-auto" />
           </div>
-          {/* Produtos — pequena */}
-          <div
-            className="flex-[1] min-h-0 rounded-xl overflow-hidden"
-            style={{ border: '1px solid rgba(192,38,211,0.2)', boxShadow: '0 4px 30px rgba(0,0,0,0.4)' }}
-          >
-            <img src="/fotohistoria/2project.png" alt="PicTuz — produtos" className="w-full h-full object-cover object-center" />
+          {/* Produtos — lado a lado */}
+          <div className="flex gap-3">
+            <div
+              className="flex-1 rounded-xl overflow-hidden aspect-[4/3]"
+              style={{ border: '1px solid rgba(192,38,211,0.2)', boxShadow: '0 4px 30px rgba(0,0,0,0.4)' }}
+            >
+              <img src="/fotohistoria/2project2.png" alt="PicTuz — Barcelona produtos" className="w-full h-full object-cover object-center" />
+            </div>
+            <div
+              className="flex-1 rounded-xl overflow-hidden aspect-[4/3]"
+              style={{ border: '1px solid rgba(192,38,211,0.2)', boxShadow: '0 4px 30px rgba(0,0,0,0.4)' }}
+            >
+              <img src="/fotohistoria/2project.png" alt="PicTuz — produtos" className="w-full h-full object-cover object-center" />
+            </div>
           </div>
         </div>
       </div>

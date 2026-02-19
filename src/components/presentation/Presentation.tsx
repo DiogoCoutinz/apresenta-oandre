@@ -33,13 +33,13 @@ const slideConfigs: SlideConfig[] = [
   { Component: Slide04, steps: 6 },  // intro + 5 milestones
   { Component: Slide04B, steps: 5 },  // intro, foto clínica, desafio, automação, fechado
   { Component: Slide05, steps: 1 },
-  { Component: Slide06, steps: 1 },
   { Component: Slide07, steps: 1 },
   { Component: Slide08, steps: 1 },
   { Component: Slide09, steps: 1 },
   { Component: Slide10, steps: 1 },
   { Component: Slide11, steps: 1 },
   { Component: Slide12, steps: 1 },
+  { Component: Slide06, steps: 1 },
   { Component: Slide13, steps: 1 },
   { Component: Slide14, steps: 1 },
   { Component: Slide15, steps: 1 },
