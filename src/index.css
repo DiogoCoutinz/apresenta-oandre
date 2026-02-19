@@ -156,3 +156,287 @@
     box-shadow: 0 0 40px rgba(26, 111, 255, 0.15);
   }
 }
+
+/* ============================================================
+   SLIDE 01 — SPECTACULAR CONTINUOUS ANIMATIONS
+   ============================================================ */
+
+/* Ken Burns — slow cinematic zoom & drift on the background photo */
+@keyframes s01-kenBurns {
+  0%   { transform: scale(1) translate(0, 0); }
+  33%  { transform: scale(1.07) translate(-0.5%, -1%); }
+  66%  { transform: scale(1.04) translate(0.5%, -0.5%); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+
+/* Aurora / nebula wave flowing at the bottom */
+@keyframes s01-aurora {
+  0%   { background-position: 0% 50%;   opacity: 0.5; }
+  25%  { opacity: 0.7; }
+  50%  { background-position: 100% 50%; opacity: 0.5; }
+  75%  { opacity: 0.8; }
+  100% { background-position: 0% 50%;   opacity: 0.5; }
+}
+
+/* Floating bokeh orbs drifting organically */
+@keyframes s01-floatOrb {
+  0%   { transform: translate(0, 0) scale(1); }
+  20%  { transform: translate(40px, -50px) scale(1.1); }
+  40%  { transform: translate(-30px, -80px) scale(0.95); }
+  60%  { transform: translate(50px, -30px) scale(1.05); }
+  80%  { transform: translate(-20px, -60px) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* Ember particles rising from below */
+@keyframes s01-particleRise {
+  0%   { transform: translateY(0) translateX(0) scale(0); opacity: 0; }
+  5%   { transform: translateY(-5vh) translateX(5px) scale(1); opacity: 0.8; }
+  25%  { transform: translateY(-25vh) translateX(-8px) scale(0.9); opacity: 0.7; }
+  50%  { transform: translateY(-50vh) translateX(12px) scale(0.8); opacity: 0.5; }
+  75%  { transform: translateY(-75vh) translateX(-5px) scale(0.6); opacity: 0.3; }
+  100% { transform: translateY(-110vh) translateX(20px) scale(0.3); opacity: 0; }
+}
+
+/* Title breathing glow */
+@keyframes s01-titleGlow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(26,111,255,0.2), 0 0 40px rgba(123,47,255,0.05);
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(26,111,255,0.5), 0 0 80px rgba(123,47,255,0.25), 0 0 120px rgba(192,38,211,0.1);
+  }
+}
+
+/* Cinematic light sweep across the title */
+@keyframes s01-lightSweep {
+  0%, 75% { transform: translateX(-200%) skewX(-15deg); }
+  100%    { transform: translateX(500%) skewX(-15deg); }
+}
+
+/* Animated gradient flow on the underline */
+@keyframes s01-gradientFlow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Underline glow pulse */
+@keyframes s01-underlineGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(26,111,255,0.6), 0 0 30px rgba(123,47,255,0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(26,111,255,1), 0 0 50px rgba(123,47,255,0.6), 0 0 80px rgba(192,38,211,0.3);
+  }
+}
+
+/* Logo breathing glow */
+@keyframes s01-breatheLogo {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(26,111,255,0.3));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(26,111,255,0.6)) drop-shadow(0 0 50px rgba(123,47,255,0.3));
+    transform: scale(1.04);
+  }
+}
+
+/* Tech grid pulse */
+@keyframes s01-gridPulse {
+  0%, 100% { opacity: 0.03; }
+  50%      { opacity: 0.06; }
+}
+
+/* Divider expand + glow pulse */
+@keyframes s01-dividerPulse {
+  0%, 100% {
+    transform: scaleX(1);
+    box-shadow: 0 0 10px rgba(26,111,255,0.5);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scaleX(1.4);
+    box-shadow: 0 0 25px rgba(26,111,255,0.9), 0 0 50px rgba(123,47,255,0.4);
+    opacity: 1;
+  }
+}
+
+/* Cinematic scan line moving bottom to top */
+@keyframes s01-scanLine {
+  0%   { top: 105%; }
+  100% { top: -5%; }
+}
+
+/* IA text glow pulse */
+@keyframes s01-iaGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(26,111,255,0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(26,111,255,0.8)) drop-shadow(0 0 40px rgba(123,47,255,0.4));
+  }
+}
+
+/* -------- Slide 01 classes -------- */
+
+.s01-ken-burns {
+  animation: s01-kenBurns 25s ease-in-out infinite;
+  will-change: transform;
+}
+
+.s01-aurora {
+  background: linear-gradient(
+    135deg,
+    rgba(26,111,255,0.15) 0%,
+    rgba(123,47,255,0.12) 25%,
+    rgba(192,38,211,0.08) 50%,
+    rgba(26,111,255,0.1) 75%,
+    rgba(123,47,255,0.15) 100%
+  );
+  background-size: 400% 400%;
+  animation: s01-aurora 15s ease-in-out infinite;
+  mask-image: linear-gradient(to top, black 0%, transparent 60%);
+  -webkit-mask-image: linear-gradient(to top, black 0%, transparent 60%);
+}
+
+.s01-grid {
+  animation: s01-gridPulse 8s ease-in-out infinite;
+}
+
+.s01-orb {
+  animation-name: s01-floatOrb;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.s01-particle {
+  animation-name: s01-particleRise;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+.s01-logo-breathe {
+  animation: s01-breatheLogo 4s ease-in-out infinite;
+  will-change: transform, filter;
+}
+
+.s01-title-glow {
+  animation: s01-titleGlow 4s ease-in-out infinite;
+  overflow: hidden;
+}
+
+.s01-light-sweep {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.1),
+    rgba(255,255,255,0.04),
+    transparent
+  );
+  animation: s01-lightSweep 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.s01-underline {
+  animation: s01-gradientFlow 3s linear infinite, s01-underlineGlow 3s ease-in-out infinite;
+}
+
+.s01-divider {
+  width: 200px;
+  animation: s01-dividerPulse 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.s01-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(26,111,255,0.12) 20%,
+    rgba(123,47,255,0.18) 50%,
+    rgba(26,111,255,0.12) 80%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 20px rgba(26,111,255,0.15),
+    0 -5px 30px rgba(26,111,255,0.08),
+    0 5px 30px rgba(26,111,255,0.08);
+  animation: s01-scanLine 10s linear infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.s01-ia-glow {
+  animation: s01-iaGlow 3s ease-in-out infinite;
+}
+
+/* -------- Slide 15 (Final) animations -------- */
+
+.s15-particle {
+  animation: s15-float 4s ease-in-out infinite;
+}
+
+@keyframes s15-float {
+  0% { opacity: 0; transform: translateY(0) scale(0); }
+  15% { opacity: var(--particle-opacity, 0.3); transform: translateY(-10px) scale(1); }
+  85% { opacity: var(--particle-opacity, 0.3); transform: translateY(-30px) scale(1); }
+  100% { opacity: 0; transform: translateY(-50px) scale(0); }
+}
+
+.s15-grid {
+  background-image:
+    linear-gradient(rgba(26,111,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,111,255,0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: s15-gridShift 20s linear infinite;
+}
+
+@keyframes s15-gridShift {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+
+.s15-logo-breathe {
+  animation: s15-breathe 3s ease-in-out infinite;
+}
+
+@keyframes s15-breathe {
+  0%, 100% { transform: scale(1); filter: invert(1) drop-shadow(0 0 20px rgba(26,111,255,0.3)); }
+  50% { transform: scale(1.05); filter: invert(1) drop-shadow(0 0 40px rgba(26,111,255,0.6)); }
+}
+
+.s15-number-glow {
+  animation: s15-numberGlow 3s ease-in-out infinite, s15-gradientShift 4s ease-in-out infinite;
+}
+
+@keyframes s15-numberGlow {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(26,111,255,0.4)); }
+  50% { filter: drop-shadow(0 0 50px rgba(123,47,255,0.6)) drop-shadow(0 0 100px rgba(192,38,211,0.3)); }
+}
+
+@keyframes s15-gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.s15-cta-pulse {
+  animation: s15-ctaFlow 3s linear infinite;
+}
+
+@keyframes s15-ctaFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}

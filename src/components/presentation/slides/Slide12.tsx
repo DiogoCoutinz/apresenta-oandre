@@ -10,11 +10,11 @@ export const Slide12 = () => (
     <div className="pt-6 mb-8 z-10">
       <p className="text-white/40 text-xs font-bold tracking-[0.3em] uppercase mb-3">Demo</p>
       <h1 className="text-white font-black" style={{ fontSize: 'clamp(32px, 4vw, 56px)', letterSpacing: '-0.02em' }}>
-        E isto que vale{' '}
+        É isto que vale{' '}
         <span className="gradient-text glow-metric">+3.500&euro;</span>
       </h1>
       <p className="text-white/40 mt-3 font-light" style={{ fontSize: 'clamp(14px, 1.3vw, 18px)' }}>
-        Ao vivo. Sem edicao.
+        Ao vivo. Sem edição.
       </p>
     </div>
 
@@ -46,7 +46,7 @@ export const Slide12 = () => (
             DEMO AO VIVO
           </p>
           <p className="text-white/8 text-xs mt-2" style={{ fontSize: '10px', letterSpacing: '0.15em' }}>
-            Fluxo N8N + Agente de Reativacao visiveis durante a demo
+            Fluxo N8N + Agente de Reativação visíveis durante a demo
           </p>
         </div>
       </div>

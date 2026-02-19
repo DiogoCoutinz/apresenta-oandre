@@ -17,17 +17,40 @@ import { Slide12 } from './slides/Slide12';
 import { Slide13 } from './slides/Slide13';
 import { Slide14 } from './slides/Slide14';
 import { Slide15 } from './slides/Slide15';
+import { Slide16 } from './slides/Slide16';
 
-const slides = [
-  Slide01, Slide02, Slide03, Slide03B, Slide04, Slide04B, Slide05,
-  Slide06, Slide07, Slide08, Slide09, Slide10,
-  Slide11, Slide12, Slide13, Slide14, Slide15,
+interface SlideConfig {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Component: React.ComponentType<any>;
+  steps: number; // 1 = normal slide, >1 = has internal sub-steps
+}
+
+const slideConfigs: SlideConfig[] = [
+  { Component: Slide01, steps: 1 },
+  { Component: Slide02, steps: 1 },
+  { Component: Slide03, steps: 6 },  // title, erasmus, janeiro, projeto1, pictuz, quote
+  { Component: Slide03B, steps: 5 },  // title, n8n, circulo, marca, viral
+  { Component: Slide04, steps: 1 },
+  { Component: Slide04B, steps: 1 },
+  { Component: Slide05, steps: 1 },
+  { Component: Slide06, steps: 1 },
+  { Component: Slide07, steps: 1 },
+  { Component: Slide08, steps: 1 },
+  { Component: Slide09, steps: 1 },
+  { Component: Slide10, steps: 1 },
+  { Component: Slide11, steps: 1 },
+  { Component: Slide12, steps: 1 },
+  { Component: Slide13, steps: 1 },
+  { Component: Slide14, steps: 1 },
+  { Component: Slide15, steps: 1 },
+  { Component: Slide16, steps: 1 },
 ];
 
-const TOTAL = slides.length;
+const TOTAL = slideConfigs.length;
 
 export const Presentation = () => {
   const [current, setCurrent] = useState(0);
+  const [step, setStep] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [animDir, setAnimDir] = useState<'next' | 'prev'>('next');
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -37,18 +60,42 @@ export const Presentation = () => {
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const controlsTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
-  const goTo = useCallback((index: number, dir: 'next' | 'prev' = 'next') => {
+  const currentConfig = slideConfigs[current];
+
+  const goToSlide = useCallback((index: number, dir: 'next' | 'prev' = 'next') => {
     if (isAnimating || index < 0 || index >= TOTAL) return;
     setAnimDir(dir);
     setIsAnimating(true);
     setTimeout(() => {
       setCurrent(index);
+      // When going forward, start at step 0; when going back, start at last step
+      setStep(dir === 'prev' ? slideConfigs[index].steps - 1 : 0);
       setIsAnimating(false);
     }, 350);
   }, [isAnimating]);
 
-  const next = useCallback(() => goTo(Math.min(current + 1, TOTAL - 1), 'next'), [current, goTo]);
-  const prev = useCallback(() => goTo(Math.max(current - 1, 0), 'prev'), [current, goTo]);
+  const next = useCallback(() => {
+    if (isAnimating) return;
+    const maxStep = currentConfig.steps - 1;
+    if (step < maxStep) {
+      // Advance sub-step (no slide transition animation)
+      setStep(step + 1);
+    } else {
+      // Go to next slide
+      goToSlide(Math.min(current + 1, TOTAL - 1), 'next');
+    }
+  }, [current, step, currentConfig, isAnimating, goToSlide]);
+
+  const prev = useCallback(() => {
+    if (isAnimating) return;
+    if (step > 0) {
+      // Go back a sub-step
+      setStep(step - 1);
+    } else {
+      // Go to previous slide
+      goToSlide(Math.max(current - 1, 0), 'prev');
+    }
+  }, [current, step, isAnimating, goToSlide]);
 
   // Keyboard
   useEffect(() => {
@@ -142,7 +189,7 @@ export const Presentation = () => {
     }
   };
 
-  const CurrentSlide = slides[current];
+  const CurrentSlide = currentConfig.Component;
   const progress = ((current + 1) / TOTAL) * 100;
 
   return (
@@ -166,7 +213,7 @@ export const Presentation = () => {
 
       {/* Slide with transition */}
       <div
-        className="absolute inset-0 transition-all duration-350"
+        className="absolute inset-0"
         style={{
           opacity: isAnimating ? 0 : 1,
           transform: isAnimating
@@ -175,8 +222,30 @@ export const Presentation = () => {
           transition: 'opacity 0.35s ease, transform 0.35s ease',
         }}
       >
-        <CurrentSlide />
+        <CurrentSlide step={step} />
       </div>
+
+      {/* Sub-step indicator — small dots when slide has multiple steps */}
+      {currentConfig.steps > 1 && (
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1.5">
+          {Array.from({ length: currentConfig.steps }, (_, i) => (
+            <div
+              key={i}
+              className="rounded-full transition-all duration-300"
+              style={{
+                width: i === step ? '16px' : '4px',
+                height: '4px',
+                background: i === step
+                  ? 'linear-gradient(90deg, #1A6FFF, #C026D3)'
+                  : i < step
+                    ? 'rgba(26,111,255,0.4)'
+                    : 'rgba(255,255,255,0.15)',
+                boxShadow: i === step ? '0 0 8px rgba(26,111,255,0.5)' : 'none',
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Controls overlay */}
       <div
@@ -186,12 +255,12 @@ export const Presentation = () => {
         {/* Prev button */}
         <button
           onClick={prev}
-          disabled={current === 0}
+          disabled={current === 0 && step === 0}
           className="flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200"
           style={{
             background: 'rgba(255,255,255,0.06)',
             border: '1px solid rgba(255,255,255,0.1)',
-            color: current === 0 ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.7)',
+            color: current === 0 && step === 0 ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.7)',
           }}
         >
           <ChevronLeft size={18} />
@@ -201,10 +270,13 @@ export const Presentation = () => {
         <div className="flex items-center gap-4">
           {/* Dot nav */}
           <div className="flex items-center gap-1.5">
-            {slides.map((_, i) => (
+            {slideConfigs.map((_, i) => (
               <button
                 key={i}
-                onClick={() => goTo(i, i > current ? 'next' : 'prev')}
+                onClick={() => {
+                  setStep(0);
+                  goToSlide(i, i > current ? 'next' : 'prev');
+                }}
                 className="rounded-full transition-all duration-300"
                 style={{
                   width: i === current ? '20px' : '5px',
@@ -242,12 +314,12 @@ export const Presentation = () => {
           </span>
           <button
             onClick={next}
-            disabled={current === TOTAL - 1}
+            disabled={current === TOTAL - 1 && step === currentConfig.steps - 1}
             className="flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200"
             style={{
               background: 'rgba(255,255,255,0.06)',
               border: '1px solid rgba(255,255,255,0.1)',
-              color: current === TOTAL - 1 ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.7)',
+              color: current === TOTAL - 1 && step === currentConfig.steps - 1 ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.7)',
             }}
           >
             <ChevronRight size={18} />
