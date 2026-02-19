@@ -21,5 +21,6 @@ export const Slide10 = () => (
     oQueFaz="Agente com todo o conhecimento da empresa integrado. Consulta o CRM em tempo real. Responde a qualquer questão interna."
     resultado="O conhecimento da empresa nunca se perde. Onboarding de novos colaboradores 10x mais rápido."
     price="€ — — —"
+    image="/ragagent.png"
   />
 );

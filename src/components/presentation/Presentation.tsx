@@ -30,8 +30,8 @@ const slideConfigs: SlideConfig[] = [
   { Component: Slide02, steps: 1 },
   { Component: Slide03, steps: 6 },  // title, erasmus, janeiro, projeto1, pictuz, quote
   { Component: Slide03B, steps: 5 },  // title, n8n, circulo, marca, viral
-  { Component: Slide04, steps: 1 },
-  { Component: Slide04B, steps: 1 },
+  { Component: Slide04, steps: 6 },  // intro + 5 milestones
+  { Component: Slide04B, steps: 5 },  // intro, foto clínica, desafio, automação, fechado
   { Component: Slide05, steps: 1 },
   { Component: Slide06, steps: 1 },
   { Component: Slide07, steps: 1 },
