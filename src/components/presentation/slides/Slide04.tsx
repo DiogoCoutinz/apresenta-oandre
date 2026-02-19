@@ -241,7 +241,6 @@ export const Slide04 = ({ step = 0 }: { step?: number }) => {
               const revealed = step >= cardStep;
               const isActive = step === cardStep;
               const isPast   = step > cardStep;
-              const CARD_H   = i === 4 ? 248 : 222;
               const CARD_W   = '92%';
               const CONN_H   = 18;
               const DOT      = 14;
@@ -261,7 +260,7 @@ export const Slide04 = ({ step = 0 }: { step?: number }) => {
                       transition:'opacity .6s ease, transform .6s cubic-bezier(.34,1.45,.64,1)',
                       zIndex:4,
                     }}>
-                      <Card c={c} isActive={isActive} cardH={CARD_H} cardW={CARD_W} connH={CONN_H} rot={rot} position="above" />
+                      <Card c={c} isActive={isActive} cardW={CARD_W} connH={CONN_H} rot={rot} position="above" />
                     </div>
                   )}
 
@@ -305,7 +304,7 @@ export const Slide04 = ({ step = 0 }: { step?: number }) => {
                       transition:'opacity .6s ease, transform .6s cubic-bezier(.34,1.45,.64,1)',
                       zIndex:4,
                     }}>
-                      <Card c={c} isActive={isActive} cardH={CARD_H} cardW={CARD_W} connH={CONN_H} rot={rot} position="below" />
+                      <Card c={c} isActive={isActive} cardW={CARD_W} connH={CONN_H} rot={rot} position="below" />
                     </div>
                   )}
                 </div>
@@ -345,14 +344,13 @@ export const Slide04 = ({ step = 0 }: { step?: number }) => {
 interface CardProps {
   c: Chapter;
   isActive: boolean;
-  cardH: number;
   cardW: string;
   connH: number;
   rot: string;
   position: 'above' | 'below';
 }
 
-const Card = ({ c, isActive, cardH, cardW, connH, rot, position }: CardProps) => {
+const Card = ({ c, isActive, cardW, connH, rot, position }: CardProps) => {
   const connector = (
     <div style={{
       width:'2px', height:`${connH}px`, flexShrink:0,
@@ -366,7 +364,7 @@ const Card = ({ c, isActive, cardH, cardW, connH, rot, position }: CardProps) =>
       className="relative overflow-hidden flex-shrink-0"
       style={{
         width: cardW,
-        height:`${cardH}px`,
+        aspectRatio: '1 / 1',
         borderRadius:'16px',
         transform:`rotate(${rot}) ${isActive ? 'scale(1.05) perspective(900px) rotateY(0deg)' : `scale(1) perspective(900px) rotateY(0deg)`}`,
         border:`1px solid ${isActive ? g(c.rgb,.65) : g(c.rgb,.32)}`,

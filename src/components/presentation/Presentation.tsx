@@ -7,13 +7,13 @@ import { Slide03B } from './slides/Slide03B';
 import { Slide04 } from './slides/Slide04';
 import { Slide04B } from './slides/Slide04B';
 import { Slide05 } from './slides/Slide05';
-import { Slide06 } from './slides/Slide06';
 import { Slide07 } from './slides/Slide07';
 import { Slide08 } from './slides/Slide08';
 import { Slide09 } from './slides/Slide09';
 import { Slide10 } from './slides/Slide10';
 import { Slide11 } from './slides/Slide11';
 import { Slide12 } from './slides/Slide12';
+import { Slide12B } from './slides/Slide12B';
 import { Slide13 } from './slides/Slide13';
 import { Slide15 } from './slides/Slide15';
 import { Slide16 } from './slides/Slide16';
@@ -38,9 +38,9 @@ const slideConfigs: SlideConfig[] = [
   { Component: Slide10, steps: 1 },
   { Component: Slide11, steps: 1 },
   { Component: Slide12, steps: 1 },
-  { Component: Slide06, steps: 1 },
+  { Component: Slide12B, steps: 2 },
   { Component: Slide13, steps: 1 },
-  { Component: Slide15, steps: 7 },  // intro, 5 learnings, all+CTA
+  { Component: Slide15, steps: 7 }, 
   { Component: Slide16, steps: 1 },
 ];
 
