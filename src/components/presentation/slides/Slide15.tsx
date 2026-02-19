@@ -1,275 +1,247 @@
-import { useState, useEffect, useMemo } from 'react';
-const flowziLogo = '/logo-lettering-preto.png';
 import { SpeakerTag } from '../SpeakerTag';
 
-/* Animated counter from 0 to target */
-const Counter = ({ target, duration = 2000, prefix = '', suffix = '' }: { target: number; duration?: number; prefix?: string; suffix?: string }) => {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    const start = Date.now();
-    const step = () => {
-      const elapsed = Date.now() - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * target));
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    const timer = setTimeout(() => requestAnimationFrame(step), 800);
-    return () => clearTimeout(timer);
-  }, [target, duration]);
-  return <>{prefix}{count.toLocaleString('pt-PT')}{suffix}</>;
-};
+const T = 'transition-all duration-700 ease-out';
 
-/* Floating particles */
-const Particles = () => {
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 60 }, (_, i) => ({
-        size: ((i * 7 + 3) % 6) + 2,
-        x: (i * 31 + 7) % 100,
-        y: (i * 17 + 13) % 100,
-        delay: ((i * 19 + 1) % 40) / 10,
-        dur: ((i * 13 + 5) % 20) / 10 + 3,
-        color: i % 4 === 0 ? '#1A6FFF' : i % 4 === 1 ? '#7B2FFF' : i % 4 === 2 ? '#C026D3' : '#ffffff',
-        opacity: i % 4 === 3 ? 0.15 : ((i * 11 + 3) % 30) / 100 + 0.1,
-      })),
-    [],
-  );
+const learnings = [
+  {
+    number: '01',
+    title: 'Estar nas redes sociais não é opcional. 1 mês e o efeito composto começa.',
+    accent: 'Ou jogas, ou ficas a ver. Depois de sentires o momentum, não vais querer parar.',
+    gradient: 'linear-gradient(135deg, #1A6FFF, #7B2FFF)',
+    glow: 'rgba(26,111,255,0.15)',
+    glowColor: '#1A6FFF',
+  },
+  {
+    number: '02',
+    title: 'Os falhanços não são tempo perdido — são treino invisível.',
+    accent: 'Quando o veículo certo apareceu, conectei tudo num instante. Os 10 meses de zero foram 10 meses de fundação.',
+    gradient: 'linear-gradient(135deg, #7B2FFF, #C026D3)',
+    glow: 'rgba(123,47,255,0.15)',
+    glowColor: '#7B2FFF',
+  },
+  {
+    number: '03',
+    title: 'O teu círculo define os teus próximos 12 meses.',
+    accent: 'Se te rodeas de quem fala de sair à noite, vais sair à noite. Se te rodeas de quem faz negócios, vais fazer negócios.',
+    gradient: 'linear-gradient(135deg, #C026D3, #EF4444)',
+    glow: 'rgba(192,38,211,0.15)',
+    glowColor: '#C026D3',
+  },
+  {
+    number: '04',
+    title: 'Dá ship. Ouve o mercado. Não esperes que fique perfeito.',
+    accent: 'Feito é melhor que perfeito. Lança, recolhe feedback, melhora. Repete.',
+    gradient: 'linear-gradient(135deg, #1A6FFF, #7B2FFF)',
+    glow: 'rgba(26,111,255,0.12)',
+    glowColor: '#1A6FFF',
+  },
+  {
+    number: '05',
+    title: 'Só perdes quando desistes. Mete tanto volume que a sorte deixa de ter efeito.',
+    accent: '"The only way you can lose is if you quit." — Alex Hormozi',
+    gradient: 'linear-gradient(135deg, #7B2FFF, #1A6FFF)',
+    glow: 'rgba(123,47,255,0.12)',
+    glowColor: '#7B2FFF',
+  },
+];
 
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((p, i) => (
-        <div
-          key={i}
-          className="absolute rounded-full s15-particle"
-          style={{
-            width: p.size,
-            height: p.size,
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            background: p.color,
-            opacity: 0,
-            boxShadow: `0 0 ${p.size * 3}px ${p.color}`,
-            animationDelay: `${p.delay + 1}s`,
-            animationDuration: `${p.dur}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
-};
+// Steps: 0=intro, 1-5=each learning full-screen, 6=all+CTA
+export const Slide15 = ({ step = 0 }: { step?: number }) => {
+  const showAll = step >= 6;
+  const activeIdx = step >= 1 && step <= 5 ? step - 1 : -1;
+  const active = activeIdx >= 0 ? learnings[activeIdx] : null;
 
-export const Slide15 = () => {
-  const [phase, setPhase] = useState(0);
-
-  useEffect(() => {
-    const timers = [
-      setTimeout(() => setPhase(1), 100),
-      setTimeout(() => setPhase(2), 600),
-      setTimeout(() => setPhase(3), 1200),
-      setTimeout(() => setPhase(4), 1800),
-      setTimeout(() => setPhase(5), 2600),
-      setTimeout(() => setPhase(6), 3400),
-    ];
-    return () => timers.forEach(clearTimeout);
-  }, []);
+  const glowBg = active ? active.glow : 'rgba(26,111,255,0.06)';
 
   return (
-    <div className="relative w-full h-full slide-bg flex flex-col items-center justify-center overflow-hidden" style={{ background: '#050810' }}>
+    <div
+      className="relative w-full h-full flex overflow-hidden"
+      style={{ background: '#050810' }}
+    >
       <SpeakerTag speaker="MARCELO + DIOGO" />
 
-      {/* Animated background layers */}
+      {/* Dynamic background glow */}
       <div
-        className="absolute inset-0 s15-bg-reveal"
-        style={{
-          background: 'radial-gradient(ellipse at 50% 40%, rgba(26,111,255,0.12) 0%, rgba(123,47,255,0.06) 40%, transparent 70%)',
-          opacity: phase >= 1 ? 1 : 0,
-          transform: phase >= 1 ? 'scale(1)' : 'scale(0.5)',
-          transition: 'all 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
-        }}
+        className={`absolute inset-0 pointer-events-none ${T}`}
+        style={{ background: `radial-gradient(ellipse at 50% 50%, ${glowBg} 0%, transparent 60%)` }}
       />
-
-      {/* Pulse ring */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+        className={`absolute w-[500px] h-[500px] rounded-full pointer-events-none ${T}`}
         style={{
-          width: phase >= 2 ? '120vmax' : '0px',
-          height: phase >= 2 ? '120vmax' : '0px',
-          border: '1px solid rgba(26,111,255,0.15)',
-          transition: 'all 2s cubic-bezier(0.16, 1, 0.3, 1)',
-          opacity: phase >= 2 ? 0.4 : 0,
+          background: `radial-gradient(circle, ${glowBg} 0%, transparent 60%)`,
+          filter: 'blur(100px)', top: '-10%', left: '-5%',
         }}
       />
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+        className={`absolute w-[400px] h-[400px] rounded-full pointer-events-none ${T}`}
         style={{
-          width: phase >= 2 ? '80vmax' : '0px',
-          height: phase >= 2 ? '80vmax' : '0px',
-          border: '1px solid rgba(123,47,255,0.1)',
-          transition: 'all 2.5s cubic-bezier(0.16, 1, 0.3, 1)',
-          opacity: phase >= 2 ? 0.3 : 0,
+          background: `radial-gradient(circle, ${step === 1 ? 'rgba(123,47,255,0.1)' : glowBg} 0%, transparent 60%)`,
+          filter: 'blur(80px)', bottom: '-10%', right: '-5%',
         }}
       />
 
-      {/* Floating particles */}
-      {phase >= 2 && <Particles />}
-
-      {/* Animated grid lines */}
+      {/* ===== STEP 0: INTRO ===== */}
       <div
-        className="absolute inset-0 pointer-events-none s15-grid"
-        style={{ opacity: phase >= 1 ? 0.03 : 0, transition: 'opacity 2s ease' }}
-      />
-
-      {/* CONTENT */}
-      <div className="relative z-10 flex flex-col items-center text-center px-8 max-w-4xl">
-
-        {/* Phase 1: Flowzi logo drops in */}
+        className={`absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-16 ${T}`}
+        style={{
+          opacity: step === 0 ? 1 : 0,
+          transform: step === 0 ? 'scale(1)' : 'scale(0.9)',
+          pointerEvents: step === 0 ? 'auto' : 'none',
+        }}
+      >
         <div
+          className="rounded-2xl overflow-hidden px-6 py-3 mb-8"
           style={{
-            opacity: phase >= 1 ? 1 : 0,
-            transform: phase >= 1 ? 'translateY(0) scale(1)' : 'translateY(-60px) scale(0.5)',
-            transition: 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
-            filter: phase >= 1 ? 'none' : 'blur(10px)',
+            background: 'rgba(255,255,255,0.95)',
+            boxShadow: '0 4px 30px rgba(26,111,255,0.2), 0 0 60px rgba(123,47,255,0.1)',
           }}
         >
-          <div className="relative mb-6">
-            <div
-              className="absolute inset-0 blur-2xl"
-              style={{ background: 'radial-gradient(circle, rgba(26,111,255,0.4) 0%, transparent 70%)', transform: 'scale(3)', opacity: phase >= 5 ? 0.6 : 0.3, transition: 'opacity 1s ease' }}
-            />
-            <div
-              className="relative rounded-xl overflow-hidden px-4 py-2 s15-logo-breathe"
-              style={{ background: 'rgba(255,255,255,0.95)', boxShadow: '0 4px 20px rgba(26,111,255,0.2)' }}
-            >
-              <img
-                src={flowziLogo}
-                alt="Flowzi"
-                className="h-10 object-contain"
+          <img src="/logo-lettering-preto.png" alt="Flowzi" className="h-12 object-contain" />
+        </div>
+        <h1
+          className="text-white font-black"
+          style={{ fontSize: 'clamp(48px, 7vw, 96px)', letterSpacing: '-0.04em', lineHeight: 1 }}
+        >
+          O que <span className="gradient-text">aprendemos.</span>
+        </h1>
+        <p className="text-white/30 mt-4 font-light" style={{ fontSize: 'clamp(14px, 1.4vw, 20px)' }}>
+          5 lições que mudaram tudo.
+        </p>
+      </div>
+
+      {/* ===== STEPS 1-5: EACH LEARNING FULL-SCREEN ===== */}
+      {learnings.map((l, i) => {
+        const isActive = activeIdx === i;
+        return (
+          <div
+            key={l.number}
+            className={`absolute inset-0 z-10 flex ${T}`}
+            style={{ opacity: isActive ? 1 : 0, pointerEvents: isActive ? 'auto' : 'none' }}
+          >
+            {/* Left progress */}
+            <div className="w-16 flex flex-col justify-center gap-3 pl-6 flex-shrink-0">
+              {learnings.map((_, pi) => (
+                <div
+                  key={pi}
+                  className={T}
+                  style={{
+                    width: '4px',
+                    height: pi === i ? '32px' : '16px',
+                    borderRadius: '2px',
+                    background: pi < i ? learnings[pi].gradient : pi === i ? l.gradient : 'rgba(255,255,255,0.1)',
+                    boxShadow: pi === i ? `0 0 12px ${l.glowColor}80` : 'none',
+                  }}
+                />
+              ))}
+            </div>
+
+            <div className="flex-1 flex flex-col items-start justify-center px-16">
+              <span
+                className="font-black"
+                style={{
+                  fontSize: 'clamp(80px, 12vw, 160px)',
+                  letterSpacing: '-0.06em', lineHeight: 0.85,
+                  background: l.gradient,
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                  filter: `drop-shadow(0 0 40px ${l.glow})`,
+                  opacity: isActive ? 1 : 0,
+                  transform: isActive ? 'translateX(0)' : 'translateX(-40px)',
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+              >
+                {l.number}
+              </span>
+              <h2
+                className="text-white font-black mt-4"
+                style={{
+                  fontSize: 'clamp(32px, 4.5vw, 64px)',
+                  letterSpacing: '-0.03em', lineHeight: 1.05, maxWidth: '85%',
+                  opacity: isActive ? 1 : 0,
+                  transform: isActive ? 'translateY(0)' : 'translateY(30px)',
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s',
+                }}
+              >
+                {l.title}
+              </h2>
+              <p
+                className="text-white/40 font-light mt-4 max-w-2xl"
+                style={{
+                  fontSize: 'clamp(15px, 1.6vw, 22px)', lineHeight: 1.5,
+                  opacity: isActive ? 1 : 0,
+                  transform: isActive ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s',
+                }}
+              >
+                {l.accent}
+              </p>
+              <div
+                style={{
+                  height: '3px', marginTop: '32px', borderRadius: '2px',
+                  width: isActive ? '120px' : '0px',
+                  background: l.gradient,
+                  boxShadow: `0 0 20px ${l.glowColor}60`,
+                  transition: 'width 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s',
+                }}
               />
             </div>
           </div>
-        </div>
+        );
+      })}
 
-        {/* Phase 2: "200K" counter */}
-        <div
-          style={{
-            opacity: phase >= 2 ? 1 : 0,
-            transform: phase >= 2 ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.8)',
-            transition: 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)',
-            filter: phase >= 2 ? 'none' : 'blur(20px)',
-          }}
-        >
-          <p
-            className="font-black s15-number-glow"
-            style={{
-              fontSize: 'clamp(72px, 12vw, 160px)',
-              letterSpacing: '-0.04em',
-              lineHeight: 0.9,
-              background: 'linear-gradient(135deg, #1A6FFF 0%, #7B2FFF 40%, #C026D3 70%, #fff 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              backgroundSize: '200% 200%',
-            }}
-          >
-            {phase >= 2 ? <Counter target={200} prefix="" suffix="K" duration={2500} /> : '0K'}
-          </p>
-          <p
-            className="text-white/50 font-bold tracking-[0.2em] uppercase mt-2"
-            style={{ fontSize: 'clamp(12px, 1.2vw, 16px)' }}
-          >
-            Objetivo 2026
-          </p>
-        </div>
-
-        {/* Phase 3: Main statement */}
-        <div
-          className="mt-8"
-          style={{
-            opacity: phase >= 3 ? 1 : 0,
-            transform: phase >= 3 ? 'translateY(0)' : 'translateY(30px)',
-            transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1)',
-            transitionDelay: '0.2s',
-          }}
-        >
-          <p
-            className="text-white font-black leading-tight"
-            style={{ fontSize: 'clamp(24px, 3.5vw, 48px)', letterSpacing: '-0.02em' }}
-          >
-            Acreditamos que esta é a{' '}
-            <span className="gradient-text">última grande oportunidade</span>
-            <br />de jogar o jogo do empreendedorismo.
-          </p>
-        </div>
-
-        {/* Phase 4: Sub-text */}
-        <div
-          className="mt-5"
-          style={{
-            opacity: phase >= 4 ? 1 : 0,
-            transform: phase >= 4 ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 0.8s ease-out',
-          }}
-        >
-          <p className="text-white/50 font-light" style={{ fontSize: 'clamp(14px, 1.4vw, 20px)', lineHeight: 1.6 }}>
-            O mundo da IA está a mudar tudo. A janela está aberta.
-            <br />Quem entra agora, escreve a história.
-          </p>
-        </div>
-
-        {/* Phase 5: Divider + Hormozi */}
-        <div
-          className="mt-8 flex flex-col items-center"
-          style={{
-            opacity: phase >= 5 ? 1 : 0,
-            transition: 'all 1s ease-out',
-          }}
-        >
-          <div
-            className="h-px mb-6 s15-divider-expand"
-            style={{
-              width: phase >= 5 ? '200px' : '0px',
-              background: 'linear-gradient(90deg, transparent, #1A6FFF, #7B2FFF, #C026D3, transparent)',
-              boxShadow: '0 0 20px rgba(26,111,255,0.5)',
-              transition: 'width 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
-            }}
-          />
-          <p className="text-white/60 font-medium italic" style={{ fontSize: 'clamp(14px, 1.4vw, 20px)' }}>
-            "The only way you can lose is if you quit."
-          </p>
-          <p className="text-white/25 text-xs mt-1">— Alex Hormozi</p>
-        </div>
-
-        {/* Phase 6: CTA + socials */}
-        <div
-          className="mt-10 flex flex-col items-center"
-          style={{
-            opacity: phase >= 6 ? 1 : 0,
-            transform: phase >= 6 ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1)',
-          }}
-        >
-          <p
-            className="font-black uppercase tracking-[0.3em] s15-cta-pulse"
-            style={{
-              fontSize: 'clamp(16px, 2vw, 28px)',
-              background: 'linear-gradient(90deg, #1A6FFF, #7B2FFF, #C026D3, #1A6FFF)',
-              backgroundSize: '300% 100%',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
-            Let&apos;s go fazer história
-          </p>
-
-          <div className="flex items-center gap-6 mt-6">
-            {['@flowzi.pt', '@marcelosantos', '@diogocoutinho.ai'].map((handle) => (
-              <span key={handle} className="gradient-text-muted font-medium" style={{ fontSize: 'clamp(11px, 1vw, 14px)' }}>
-                {handle}
+      {/* ===== STEP 6: ALL VISIBLE + CTA ===== */}
+      <div
+        className={`absolute inset-0 z-10 flex flex-col justify-center px-16 py-12 ${T}`}
+        style={{ opacity: showAll ? 1 : 0, pointerEvents: showAll ? 'auto' : 'none' }}
+      >
+        <div className="flex flex-col gap-3 mb-10">
+          {learnings.map((l, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-5"
+              style={{
+                opacity: showAll ? 1 : 0,
+                transform: showAll ? 'translateX(0)' : 'translateX(-30px)',
+                transition: `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.08}s`,
+              }}
+            >
+              <span
+                className="font-black flex-shrink-0"
+                style={{
+                  fontSize: 'clamp(22px, 2.5vw, 36px)',
+                  letterSpacing: '-0.04em',
+                  background: l.gradient,
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                  width: '50px',
+                }}
+              >
+                {l.number}
               </span>
-            ))}
+              <div className="h-px flex-shrink-0" style={{ width: '24px', background: l.gradient }} />
+              <p
+                className="text-white font-bold"
+                style={{ fontSize: 'clamp(16px, 2vw, 26px)', letterSpacing: '-0.02em' }}
+              >
+                {l.title}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-6">
+          <div className="h-px flex-1" style={{
+            background: 'linear-gradient(90deg, #1A6FFF, #7B2FFF, #C026D3, transparent)',
+            boxShadow: '0 0 15px rgba(26,111,255,0.4)',
+          }} />
+          <div className="rounded-xl overflow-hidden px-4 py-2 flex-shrink-0" style={{
+            background: 'rgba(255,255,255,0.95)',
+            boxShadow: '0 4px 20px rgba(26,111,255,0.15)',
+          }}>
+            <img src="/logo-lettering-preto.png" alt="Flowzi" className="h-7 object-contain" />
           </div>
+          <div className="h-px flex-1" style={{
+            background: 'linear-gradient(90deg, transparent, #C026D3, #7B2FFF, #1A6FFF)',
+            boxShadow: '0 0 15px rgba(192,38,211,0.4)',
+          }} />
         </div>
       </div>
     </div>

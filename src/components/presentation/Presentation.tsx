@@ -15,7 +15,6 @@ import { Slide10 } from './slides/Slide10';
 import { Slide11 } from './slides/Slide11';
 import { Slide12 } from './slides/Slide12';
 import { Slide13 } from './slides/Slide13';
-import { Slide14 } from './slides/Slide14';
 import { Slide15 } from './slides/Slide15';
 import { Slide16 } from './slides/Slide16';
 
@@ -28,7 +27,7 @@ interface SlideConfig {
 const slideConfigs: SlideConfig[] = [
   { Component: Slide01, steps: 1 },
   { Component: Slide02, steps: 1 },
-  { Component: Slide03, steps: 6 },  // title, erasmus, janeiro, projeto1, pictuz, quote
+  { Component: Slide03, steps: 5 },  // title, erasmus+janeiro, projeto1, pictuz, quote
   { Component: Slide03B, steps: 5 },  // title, n8n, circulo, marca, viral
   { Component: Slide04, steps: 6 },  // intro + 5 milestones
   { Component: Slide04B, steps: 5 },  // intro, foto clínica, desafio, automação, fechado
@@ -41,8 +40,7 @@ const slideConfigs: SlideConfig[] = [
   { Component: Slide12, steps: 1 },
   { Component: Slide06, steps: 1 },
   { Component: Slide13, steps: 1 },
-  { Component: Slide14, steps: 1 },
-  { Component: Slide15, steps: 1 },
+  { Component: Slide15, steps: 7 },  // intro, 5 learnings, all+CTA
   { Component: Slide16, steps: 1 },
 ];
 
