@@ -281,20 +281,12 @@ export const Slide03 = ({ step = 0 }: { step?: number }) => (
           >
             <img src="/fotohistoria/pictuzlanding.png" alt="PicTuz — website" className="w-full h-auto" />
           </div>
-          {/* Produtos — lado a lado */}
-          <div className="flex gap-3">
-            <div
-              className="flex-1 rounded-xl overflow-hidden aspect-[4/3]"
-              style={{ border: '1px solid rgba(192,38,211,0.2)', boxShadow: '0 4px 30px rgba(0,0,0,0.4)' }}
-            >
-              <img src="/fotohistoria/2project2.png" alt="PicTuz — Barcelona produtos" className="w-full h-full object-cover object-center" />
-            </div>
-            <div
-              className="flex-1 rounded-xl overflow-hidden aspect-[4/3]"
-              style={{ border: '1px solid rgba(192,38,211,0.2)', boxShadow: '0 4px 30px rgba(0,0,0,0.4)' }}
-            >
-              <img src="/fotohistoria/2project.png" alt="PicTuz — produtos" className="w-full h-full object-cover object-center" />
-            </div>
+          {/* Produtos */}
+          <div
+            className="rounded-xl overflow-hidden aspect-[4/3]"
+            style={{ border: '1px solid rgba(192,38,211,0.2)', boxShadow: '0 4px 30px rgba(0,0,0,0.4)' }}
+          >
+            <img src="/fotohistoria/2project2.png" alt="PicTuz — Barcelona produtos" className="w-full h-full object-cover object-center" />
           </div>
         </div>
       </div>
