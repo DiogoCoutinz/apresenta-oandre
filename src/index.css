@@ -440,3 +440,145 @@
   0% { background-position: 0% 50%; }
   100% { background-position: 300% 50%; }
 }
+
+/* ============================================================
+   SLIDE 16 — CLOSING SLIDE ANIMATIONS
+   ============================================================ */
+
+/* Subtle grid that drifts */
+.s16-grid {
+  background-image:
+    linear-gradient(rgba(26,111,255,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,111,255,0.1) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: s16-gridDrift 25s linear infinite;
+}
+
+@keyframes s16-gridDrift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 80px 80px; }
+}
+
+/* Orbiting background glows */
+.s16-orbit {
+  animation: s16-orbitSpin 30s linear infinite;
+}
+
+@keyframes s16-orbitSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Floating particles — drift in random direction */
+.s16-particle {
+  opacity: 0;
+  animation: s16-particleDrift 6s ease-in-out infinite;
+}
+
+@keyframes s16-particleDrift {
+  0%   { opacity: 0; transform: translate(0, 0) scale(0); }
+  15%  { opacity: 0.6; transform: translate(0, 0) scale(1); }
+  85%  { opacity: 0.6; transform: translate(var(--particle-x, 20px), var(--particle-y, -30px)) scale(1); }
+  100% { opacity: 0; transform: translate(var(--particle-x, 20px), var(--particle-y, -30px)) scale(0); }
+}
+
+/* Title breathing glow */
+.s16-title-glow {
+  overflow: hidden;
+  animation: s16-titleBreathe 4s ease-in-out infinite;
+}
+
+@keyframes s16-titleBreathe {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(26,111,255,0.1)); }
+  50%      { filter: drop-shadow(0 0 40px rgba(26,111,255,0.3)) drop-shadow(0 0 80px rgba(123,47,255,0.15)); }
+}
+
+/* Cinematic light sweep over the title */
+.s16-light-sweep {
+  position: absolute;
+  top: 0; left: -100%; width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), rgba(255,255,255,0.08), rgba(255,255,255,0.03), transparent);
+  animation: s16-sweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes s16-sweep {
+  0%, 60%  { transform: translateX(-100%) skewX(-15deg); }
+  100%     { transform: translateX(600%) skewX(-15deg); }
+}
+
+/* Scan line */
+.s16-scan-line {
+  position: absolute; left: 0; right: 0; height: 1px; z-index: 5;
+  background: linear-gradient(90deg, transparent 0%, rgba(26,111,255,0.08) 20%, rgba(123,47,255,0.12) 50%, rgba(26,111,255,0.08) 80%, transparent 100%);
+  box-shadow: 0 0 15px rgba(26,111,255,0.1), 0 -3px 20px rgba(26,111,255,0.05), 0 3px 20px rgba(26,111,255,0.05);
+  animation: s16-scanMove 12s linear infinite;
+}
+
+@keyframes s16-scanMove {
+  0%   { top: 105%; }
+  100% { top: -5%; }
+}
+
+/* QR card gentle breathe */
+.s16-card-breathe {
+  animation: s16-cardFloat 5s ease-in-out infinite;
+}
+
+@keyframes s16-cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+/* Rotating conic gradient border */
+.s16-border-rotate {
+  animation: s16-borderSpin 4s linear infinite;
+}
+
+@keyframes s16-borderSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Bridge glow line */
+.s16-bridge-glow {
+  background: linear-gradient(90deg, transparent, #1A6FFF, #7B2FFF, #C026D3, #7B2FFF, #1A6FFF, transparent);
+  background-size: 200% 100%;
+  animation: s16-bridgeFlow 3s linear infinite;
+}
+
+@keyframes s16-bridgeFlow {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Bridge pulse overlay */
+.s16-bridge-pulse {
+  background: linear-gradient(90deg, transparent, rgba(123,47,255,0.6), transparent);
+  animation: s16-bridgePulse 2s ease-in-out infinite;
+}
+
+@keyframes s16-bridgePulse {
+  0%, 100% { opacity: 0; transform: scaleX(0.3); }
+  50%      { opacity: 1; transform: scaleX(1); }
+}
+
+/* CTA text breathe */
+.s16-cta-breathe {
+  animation: s16-ctaBreathe 3s ease-in-out infinite;
+}
+
+@keyframes s16-ctaBreathe {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+/* Flowzi logo breathe */
+.s16-logo-breathe {
+  animation: s16-logoBreathe 4s ease-in-out infinite;
+}
+
+@keyframes s16-logoBreathe {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.03); }
+}
