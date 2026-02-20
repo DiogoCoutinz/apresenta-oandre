@@ -45,7 +45,7 @@ export const Slide03B = ({ step = 0 }: { step?: number }) => (
           marginBottom: step === 0 ? '0' : '-20px',
         }}
       >
-        <p className="text-white/40 text-xs font-bold tracking-[0.3em] uppercase mb-3 pt-4">A Jornada, Parte 2</p>
+        <p className="text-white/40 text-xs font-bold tracking-[0.3em] uppercase mb-3 pt-4">Diogo — A Jornada</p>
         <h1 className="text-white font-black" style={{ fontSize: 'clamp(32px, 4.5vw, 60px)', letterSpacing: '-0.03em' }}>
           A <span className="gradient-text">Viragem</span>
         </h1>
@@ -66,7 +66,7 @@ export const Slide03B = ({ step = 0 }: { step?: number }) => (
         </p>
         <div className="flex items-center gap-3 mt-8">
           <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, #7B2FFF, transparent)' }} />
-          <p className="text-white/25 text-xs italic">carrega para avançar →</p>
+          <div />
         </div>
       </div>
 
@@ -194,7 +194,7 @@ export const Slide03B = ({ step = 0 }: { step?: number }) => (
             Lutar pelos teus objetivos é algo que devias fazer todos os dias, e se não fazes nada por isso estás destinado a falhar.
           </p>
           <p className="text-white/50 font-light leading-relaxed mb-4" style={{ fontSize: 'clamp(13px, 1.2vw, 16px)' }}>
-            Conheci o Marcelo, o André, o Gonçalo Ferreira, o Guilherme Cardoso. Leads qualificados começaram a aparecer. Os maiores tickets vieram da marca pessoal.
+            Conheci o Marcelo, o André, o Gonçalo Ferreira, o Guilherme Cardoso. Leads qualificadas começaram a aparecer. Os maiores tickets vieram da marca pessoal.
           </p>
           <div
             className="px-5 py-3 rounded-xl"

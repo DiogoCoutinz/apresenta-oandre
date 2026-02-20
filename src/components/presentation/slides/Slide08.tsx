@@ -14,8 +14,8 @@ export const Slide08 = () => (
     speaker="MARCELO"
     icon={<ChatIcon />}
     title="Agente de Atendimento 24/7"
-    problema="Clínicas com 3 pessoas sem tempo para responder a leads no WhatsApp e website."
-    oQueFaz="Responde automaticamente 24/7 no WhatsApp e website. Qualifica leads. Agenda consultas."
+    problema="Clínicas com 3 pessoas sem tempo para responder a leads no WhatsApp e Website."
+    oQueFaz="Responde automaticamente 24/7 no WhatsApp e Website. Qualifica leads. Agenda consultas."
     resultado="Taxa de conversão aumenta 10‑20%. Nenhuma lead fica sem resposta."
     image="/agente atendimento.png"
   />

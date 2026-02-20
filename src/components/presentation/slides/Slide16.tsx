@@ -1,4 +1,5 @@
 import { SpeakerTag } from '../SpeakerTag';
+import flowziLogo from '@/assets/flowzi-logo.png';
 
 /* Inline SVG Instagram icon */
 const InstagramIcon = ({ size = 20 }: { size?: number }) => (
@@ -100,7 +101,7 @@ export const Slide16 = () => (
             lineHeight: 1,
           }}
         >
-          Dúvidas<span className="gradient-text">?</span>
+          Questões<span className="gradient-text">?</span>
         </h1>
         {/* Light sweep */}
         <div className="s16-light-sweep" />
@@ -183,10 +184,9 @@ export const Slide16 = () => (
           }}
         >
           <img
-            src="/logo-lettering-preto.png"
+            src={flowziLogo}
             alt="Flowzi"
             className="h-7 object-contain"
-            style={{ filter: 'invert(1) brightness(0.8)' }}
           />
         </div>
         <span className="text-white/20 font-light" style={{ fontSize: '12px' }}>

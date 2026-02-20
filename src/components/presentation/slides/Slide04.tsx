@@ -133,7 +133,7 @@ export const Slide04 = ({ step = 0 }: { step?: number }) => {
       <div className="relative flex-shrink-0 px-12 pt-9 pb-2 flex items-end justify-between gap-8" style={{ zIndex:10 }}>
         <div>
           <p className="text-white/40 text-[10px] font-bold tracking-[0.32em] uppercase mb-1.5">
-            Marcelo — A Jornada
+            A Jornada
           </p>
           <h1 className="text-white font-black leading-none" style={{
             fontSize:'clamp(22px,2.9vw,40px)', letterSpacing:'-0.03em'

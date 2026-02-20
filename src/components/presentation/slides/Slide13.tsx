@@ -35,7 +35,7 @@ const principles = [
   {
     number: '07',
     headline: 'Trata a lead por tu',
-    desc: 'Usa o nome, faz perguntas reais, sê direto. Parceiro bate fornecedor sempre.',
+    desc: 'Usa o nome, faz perguntas reais, sê direto. Parceiro melhor que fornecedor. Sempre.',
   },
 ];
 

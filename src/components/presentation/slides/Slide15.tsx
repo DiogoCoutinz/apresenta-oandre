@@ -22,7 +22,7 @@ const learnings = [
   {
     number: '03',
     title: 'O teu círculo define os teus próximos 12 meses.',
-    accent: 'Se te rodeas de quem fala de sair à noite, vais sair à noite. Se te rodeas de quem faz negócios, vais fazer negócios.',
+    accent: 'Se te rodeias de quem fala de sair à noite, vais sair à noite. Se te rodeias de quem faz negócios, vais fazer negócios.',
     gradient: 'linear-gradient(135deg, #C026D3, #EF4444)',
     glow: 'rgba(192,38,211,0.15)',
     glowColor: '#C026D3',
@@ -37,7 +37,7 @@ const learnings = [
   },
   {
     number: '05',
-    title: 'Só perdes quando desistes. Mete tanto volume que a sorte deixa de ter efeito.',
+    title: 'Só perdes quando desistes. Mete volume. Mete muito volume.',
     accent: '"The only way you can lose is if you quit." — Alex Hormozi',
     gradient: 'linear-gradient(135deg, #7B2FFF, #1A6FFF)',
     glow: 'rgba(123,47,255,0.12)',

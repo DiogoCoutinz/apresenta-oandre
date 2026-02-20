@@ -164,7 +164,7 @@ export const Slide02 = () => (
                 </div>
                 <div>
                   <p className="text-white/60 text-xs font-medium">10 meses de zero. 2 falhanços.</p>
-                  <p className="text-white/30 text-[10px]">Hoje vende soluções por +3.500&euro;</p>
+                  <p className="text-white/30 text-[10px]">Hoje vendo soluções por +3.500&euro;</p>
                 </div>
               </div>
             </div>
@@ -203,7 +203,7 @@ export const Slide02 = () => (
                     Há um ano vendia websites a 300&euro;.
                   </p>
                   <p className="text-white/35 mt-3 italic font-light" style={{ fontSize: 'clamp(13px, 1.2vw, 16px)' }}>
-                    6 anos. 40+ projetos. Um teto invisível.
+                    6 anos. Mais de 40 projetos. Um teto invisível.
                   </p>
                 </div>
               </div>
@@ -220,7 +220,7 @@ export const Slide02 = () => (
                 </div>
                 <div>
                   <p className="text-white/60 text-xs font-medium">Engenharia → BMW → Freelance → IA</p>
-                  <p className="text-white/30 text-[10px]">Mudou de perspetiva. Não de área.</p>
+                  <p className="text-white/30 text-[10px]">Mudei de perspetiva. Não de área.</p>
                 </div>
               </div>
             </div>

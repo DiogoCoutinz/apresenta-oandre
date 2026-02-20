@@ -37,7 +37,7 @@ export const Slide03 = ({ step = 0 }: { step?: number }) => (
           marginBottom: step === 0 ? '0' : '-32px',
         }}
       >
-        <p className="text-white/40 text-xs font-bold tracking-[0.3em] uppercase mb-3 pt-4">Diogo — A História</p>
+        <p className="text-white/40 text-xs font-bold tracking-[0.3em] uppercase mb-3 pt-4">A História</p>
         <h1 className="text-white font-black" style={{ fontSize: 'clamp(32px, 4.5vw, 60px)', letterSpacing: '-0.03em' }}>
           Os <span className="gradient-text">10 Meses</span> de Zero
         </h1>
@@ -55,9 +55,8 @@ export const Slide03 = ({ step = 0 }: { step?: number }) => (
         <p className="text-white/50 font-light mt-6" style={{ fontSize: 'clamp(18px, 2vw, 26px)', lineHeight: 1.6 }}>
           Como entrei no mundo da <span className="text-white font-medium">Inteligência Artificial</span>, e porque é que demorou tanto até funcionar.
         </p>
-        <div className="flex items-center gap-3 mt-10">
-          <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, #1A6FFF, transparent)' }} />
-          <p className="text-white/25 text-xs italic">carrega para avançar na história →</p>
+        <div className="mt-10">
+          <div className="h-px w-32" style={{ background: 'linear-gradient(90deg, #1A6FFF, transparent)' }} />
         </div>
       </div>
 
