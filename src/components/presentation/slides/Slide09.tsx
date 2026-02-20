@@ -19,7 +19,6 @@ export const Slide09 = () => (
     problema="Clínicas com centenas ou milhares de contactos antigos que nunca mais voltaram."
     oQueFaz="Envia campanhas personalizadas via WhatsApp com IA. Reativa pacientes inativos automaticamente."
     resultado="Receita gerada de uma base de dados que estava a dormir."
-    price="€ — — —"
     image="/reativador.png"
   />
 );

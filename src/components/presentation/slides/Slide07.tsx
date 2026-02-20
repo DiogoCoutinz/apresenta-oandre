@@ -90,7 +90,6 @@ export const Slide07 = () => (
         <div key={i} className="card-solution p-7 flex flex-col gap-4">
           <div className="flex items-start justify-between">
             {card.icon}
-            <span className="gradient-text font-black text-lg">€ — — —</span>
           </div>
           <div>
             <h3 className="text-white font-bold mb-1" style={{ fontSize: 'clamp(13px, 1.3vw, 16px)' }}>

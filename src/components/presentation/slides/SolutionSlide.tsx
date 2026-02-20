@@ -10,7 +10,6 @@ interface SolutionSlideProps {
   problema: string;
   oQueFaz: string;
   resultado: string;
-  price?: string;
   bottomCaption?: string;
   image?: string;
 }
@@ -23,7 +22,6 @@ export const SolutionSlide = ({
   problema,
   oQueFaz,
   resultado,
-  price = '€X.XXX',
   bottomCaption,
   image,
 }: SolutionSlideProps) => (
@@ -73,20 +71,13 @@ export const SolutionSlide = ({
         ))}
       </div>
 
-      {/* Price bottom right */}
-      <div className="flex items-end justify-between mt-6">
-        {bottomCaption ? (
+      {bottomCaption && (
+        <div className="mt-6">
           <p className="text-white/30 italic" style={{ fontSize: 'clamp(11px, 1vw, 14px)' }}>
             {bottomCaption}
           </p>
-        ) : <div />}
-        <span
-          className="gradient-text font-black glow-metric"
-          style={{ fontSize: 'clamp(32px, 4vw, 52px)', letterSpacing: '-0.02em' }}
-        >
-          {price}
-        </span>
-      </div>
+        </div>
+      )}
     </div>
 
     {/* Right image panel */}

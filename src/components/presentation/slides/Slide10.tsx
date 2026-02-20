@@ -20,7 +20,6 @@ export const Slide10 = () => (
     problema="Cada vez que muda a recepcionista, perde-se todo o conhecimento da empresa. O CRM nunca é consultado."
     oQueFaz="Agente com todo o conhecimento da empresa integrado. Consulta o CRM em tempo real. Responde a qualquer questão interna."
     resultado="O conhecimento da empresa nunca se perde. Onboarding de novos colaboradores 10x mais rápido."
-    price="€ — — —"
     image="/ragagent.png"
   />
 );
